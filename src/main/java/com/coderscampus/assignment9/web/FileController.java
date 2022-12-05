@@ -32,116 +32,73 @@ public class FileController {
 	//private List<Recipe> ingestedRecipes;
 	
 	@GetMapping("/gluten-free")
-	public List<String> ingestGlutenFreeRecipes() throws IOException{
+		List<Recipe> ingestGlutenFreeRecipes() throws IOException{
+	// List<String> ingestGlutenFreeRecipes() throws IOException{
 		String targetFile= System.getProperty("user.dir");
 		targetFile=targetFile+"/data/recipes.txt";
 		
-		List<Recipe> recipes;
-		List<String> recipesToString = new ArrayList<>();
+		//List<Recipe> recipes;
+		//List<String> recipesToString = new ArrayList<>();
 		
-		//logger.info("Resulting recipes --> "+fileService.ingestData().stream()
-			//	  .filter(Recipe::getGlutenFree)
-			//	  .count());
+		//recipes=fileService.ingestData()
+		//		  .stream()
+		//		  .filter(Recipe::getGlutenFree)
+		//		  .collect(Collectors.toList());
 		
-		recipes=fileService.ingestData()
+		//recipesToString.add("Total count of recipes --> " +String.valueOf(recipes.stream().count()));
+		
+		//for (int i=0; i<recipes.size(); i++) {
+		//recipesToString.add(recipes.get(i).toString());
+		//}
+		// return recipesToString;	
+		return(fileService.ingestData()
 				  .stream()
 				  .filter(Recipe::getGlutenFree)
-				  .collect(Collectors.toList());
-		
-		recipesToString.add("Total count of recipes --> " +String.valueOf(recipes.stream().count()));
-		
-		for (int i=0; i<recipes.size(); i++) {
-		recipesToString.add(recipes.get(i).toString());
-		}
-		return recipesToString;	
+				  .collect(Collectors.toList()));
 	}
 
 	@GetMapping("/vegan")
-	public List<String> ingestVeganRecipes() throws IOException{
+	public List<Recipe> ingestVeganRecipes() throws IOException{
+	//public List<String> ingestVeganRecipes() throws IOException{
 		String targetFile= System.getProperty("user.dir");
 		targetFile=targetFile+"/data/recipes.txt";
-		
-		List<Recipe> recipes;
-		List<String> recipesToString = new ArrayList<>();
-		
-		//logger.info("Resulting recipes --> "+fileService.ingestData().stream()
-			//	  .filter(Recipe::getGlutenFree)
-			//	  .count());
-		
-		recipes=fileService.ingestData()
+		return(fileService.ingestData()
 				  .stream()
 				  .filter(Recipe::getVegan)
-				  .collect(Collectors.toList());
-		recipesToString.add("Total count of recipes --> " +String.valueOf(recipes.stream().count()));
-		
-		for (int i=0; i<recipes.size(); i++) {
-		recipesToString.add(recipes.get(i).toString());
-		}
-		return recipesToString;	
+				  .collect(Collectors.toList()));
 	}
 
 	@GetMapping("/vegan-and-gluten-free")
-	public List<String> ingestVeganGluenFreeRecipes() throws IOException{
+	public List<Recipe> ingestVeganGluenFreeRecipes() throws IOException{
 		String targetFile= System.getProperty("user.dir");
 		targetFile=targetFile+"/data/recipes.txt";
-		
-		List<Recipe> recipes;
-		List<String> recipesToString = new ArrayList<>();
-		
-		recipes=fileService.ingestData()
+
+		return (fileService.ingestData()
 				  .stream()
 				  .filter(Recipe::getVegan).filter(Recipe::getGlutenFree)
-				  .collect(Collectors.toList());
-		recipesToString.add("Total count of recipes --> " +String.valueOf(recipes.stream().count()));
-		
-		for (int i=0; i<recipes.size(); i++) {
-		recipesToString.add(recipes.get(i).toString());
-		}
-		return recipesToString;	
+				  .collect(Collectors.toList()));	
 	}
 
 	@GetMapping("/vegetarian")
-	public List<String> ingestVegetarianRecipes() throws IOException{
+	public List<Recipe> ingestVegetarianRecipes() throws IOException{
 		String targetFile= System.getProperty("user.dir");
 		targetFile=targetFile+"/data/recipes.txt";
 		
-		List<Recipe> recipes;
-		List<String> recipesToString = new ArrayList<>();
-		
-		recipes=fileService.ingestData()
+		return (fileService.ingestData()
 				  .stream()
 				  .filter(Recipe::getVegetarian)
-				  .collect(Collectors.toList());
-		
-		
-		recipesToString.add("Total count of recipes --> " +String.valueOf(recipes.stream().count()));
-		
-		for (int i=0; i<recipes.size(); i++) {
-		recipesToString.add(recipes.get(i).toString());
-		}
-		return recipesToString;	
+				  .collect(Collectors.toList()));	
 	}
 
 	
 	@GetMapping("/all-recipes")
-	public List<String> ingestAllRecipes() throws IOException{
+	public List<Recipe> ingestAllRecipes() throws IOException{
 		String targetFile= System.getProperty("user.dir");
 		targetFile=targetFile+"/data/recipes.txt";
 		
-		List<Recipe> recipes;
-		List<String> recipesToString = new ArrayList<>();
-		
-		//logger.info("Resulting recipes --> "+fileService.ingestData().stream()
-			//	  .filter(Recipe::getGlutenFree)
-			//	  .count());
-		
-		recipes=fileService.ingestData();
-		recipesToString.add("Total count of recipes --> " +String.valueOf(recipes.stream().count()));
-		
-		for (int i=0; i<recipes.size(); i++) {
-		recipesToString.add(recipes.get(i).toString());
-		}
-		return recipesToString;	
+		return (fileService.ingestData()
+				  .stream()
+				  .collect(Collectors.toList()));
 	}
 	}
 
